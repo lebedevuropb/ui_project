@@ -1,10 +1,10 @@
 from playwright.sync_api import expect
-from utils.data import CONTACTS_HEADING, CONTACTS_FEEDBACK_TITLE
+from utils.data import CONTACTS_HEADING, CONTACTS_FEEDBACK_TITLE, CONTACTS_URL
 
 
 def test_contacts_page_url(main_page):
     main_page.header.click_contacts()
-    assert "/about/contacts/" in main_page.page.url
+    expect(main_page.page).to_have_url(CONTACTS_URL)
 
 
 def test_contacts_page(contacts_page):

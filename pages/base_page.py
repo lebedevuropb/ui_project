@@ -6,9 +6,10 @@ from pages.popups import Popups
 from pages.header import Header
 
 
-class BasePage:
-    __BASE_URL = "https://action-press.ru"
+BASE_URL = "https://action-press.ru"
 
+
+class BasePage:
     def __init__(self, page: Page):
         self.page = page
         self._endpoint = ""
@@ -21,7 +22,7 @@ class BasePage:
         return self.page.locator(selector)
 
     def _full_url(self):
-        return f"{self.__BASE_URL}{self._endpoint}"
+        return f"{BASE_URL}{self._endpoint}"
 
     def navigate_to(self):
         full_url = self._full_url()
