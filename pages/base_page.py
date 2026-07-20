@@ -6,10 +6,8 @@ from pages.popups import Popups
 from pages.header import Header
 
 
-
 class BasePage:
     __BASE_URL = "https://action-press.ru"
-    CHAT_CLOSE_BUTTON = ".closeIcon__DIjWi"
 
     def __init__(self, page: Page):
         self.page = page

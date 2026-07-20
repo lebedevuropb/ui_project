@@ -9,11 +9,15 @@ class ContactsPage(BasePage):
 
     # селекторы
     _heading_selector = ".static-page-h2"
+    _feedback_title_selector = ".feedback .feedback__title"
+    _feedback_messengers_selector = ".feedback__messengers a"
 
     # локаторы
     def heading_locator(self):
         return self.element(self._heading_selector)
 
-    # методы
-    def get_heading_text(self):
-        return self.heading_locator().text_content()
+    def feedback_title_locator(self):
+        return self.element(self._feedback_title_selector)
+
+    def feedback_messengers_locator(self):
+        return self.element(self._feedback_messengers_selector)

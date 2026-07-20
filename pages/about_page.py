@@ -9,10 +9,14 @@ class AboutPage(BasePage):
 
     # селекторы
     _heading_selector = ".static-page-h2"
+    _content_title_selector = ".content__title"
 
     # локаторы
     def heading_locator(self):
         return self.element(self._heading_selector)
+
+    def content_title_locator(self):
+        return self.element(self._content_title_selector)
 
     # методы
     def get_heading_text(self):

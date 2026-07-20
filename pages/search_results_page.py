@@ -1,4 +1,3 @@
-from playwright.sync_api import Page
 from pages.base_page import BasePage
 
 
@@ -20,4 +19,3 @@ class SearchResultsPage(BasePage):
 
     def get_found_count_text(self):
         return self.found_count_locator().text_content()
-    

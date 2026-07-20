@@ -17,4 +17,3 @@ class PaymentPage(BasePage):
     # методы
     def get_heading_text(self):
         return self.heading_locator().text_content()
-    

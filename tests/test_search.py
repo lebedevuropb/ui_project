@@ -1,29 +1,17 @@
-from pages.main_page import MainPage
+from playwright.sync_api import expect
 from pages.search_results_page import SearchResultsPage
+from utils.data import SEARCH_QUERY_NO_EXACT_MATCH, EXISTING_PRODUCT_QUERY
 
 
-def test_exact_query_shows_no_results_message(page):
-    main_page = MainPage(page)
-    main_page.navigate_to()
-    main_page.popups.dismiss_all()
-
-    main_page.search_box.type_query('Электронный журнал. ВИП-версия "Главбух" 12 мес.')
+def test_no_results_message(main_page):
+    main_page.search_box.type_query(SEARCH_QUERY_NO_EXACT_MATCH)
+    expect(main_page.search_box.input_locator()).to_have_value(SEARCH_QUERY_NO_EXACT_MATCH)
     main_page.search_box.submit()
+    expect(SearchResultsPage(main_page.page).no_results_locator()).to_be_visible()
 
-    results_page = SearchResultsPage(page)
-    message = results_page.get_no_results_text()
 
-    assert "Товаров не найдено" in message
-
-def test_exact_query_shows_similar_results_fallback(page):
-    main_page = MainPage(page)
-    main_page.navigate_to()
-    main_page.popups.dismiss_all()
-
-    main_page.search_box.type_query('Электронный журнал. ВИП-версия "Главбух" 12 мес.')
+def test_successful_results(main_page):
+    main_page.search_box.type_query(EXISTING_PRODUCT_QUERY)
+    expect(main_page.search_box.input_locator()).to_have_value(EXISTING_PRODUCT_QUERY)
     main_page.search_box.submit()
-
-    results_page = SearchResultsPage(page)
-    message = results_page.get_found_count_text()
-
-    assert "Найдено" in message
+    expect(SearchResultsPage(main_page.page).no_results_locator()).not_to_be_visible()
