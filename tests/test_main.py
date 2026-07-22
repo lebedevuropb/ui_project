@@ -21,3 +21,5 @@ def test_catalog_has_categories(main_page):
 def test_recommendations_section_has_cards(main_page):
     expect(main_page.recommendations_title_locator()).to_be_visible()
     expect(main_page.recommendation_card_locator()).not_to_have_count(0)
+    expect(main_page.recommendation_card_price_locator()).not_to_have_count(0)
+    expect(main_page.recommendation_card_button_locator()).not_to_have_count(0)

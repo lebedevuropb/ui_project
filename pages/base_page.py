@@ -1,31 +1,22 @@
 from playwright.sync_api import Page
 import allure
-from pages.search_box import SearchBox
-from pages.catalog import Catalog
-from pages.popups import Popups
-from pages.header import Header
-
-
-BASE_URL = "https://action-press.ru"
 
 
 class BasePage:
+    BASE_URL = "https://action-press.ru"
+
     def __init__(self, page: Page):
         self.page = page
-        self._endpoint = ""
-        self.search_box = SearchBox(page)
-        self.catalog = Catalog(page)
-        self.popups = Popups(page)
-        self.header = Header(page)
 
     def element(self, selector):
         return self.page.locator(selector)
 
-    def _full_url(self):
-        return f"{BASE_URL}{self._endpoint}"
+    def build_url(self, url=None):
+        if url:
+            return f"{self.BASE_URL}{url}"
+        return self.BASE_URL
 
-    def navigate_to(self):
-        full_url = self._full_url()
-        with allure.step(f"Переход на страницу: {full_url}"):
-            self.page.goto(full_url)
+    def open_page(self, url=None):
+        with allure.step(f"Переход на страницу: {self.build_url(url)}"):
+            self.page.goto(self.build_url(url))
             self.page.wait_for_load_state('networkidle')

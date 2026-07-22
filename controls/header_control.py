@@ -1,12 +1,9 @@
 from playwright.sync_api import Page
 
 
-class Header:
+class HeaderControl:
     def __init__(self, page: Page):
         self.page = page
-
-    def element(self, selector):
-        return self.page.locator(selector)
 
     # селекторы
     _about_link_selector = ".mr-1"
@@ -22,34 +19,34 @@ class Header:
 
     # локаторы
     def about_link_locator(self):
-        return self.element(self._about_link_selector)
+        return self.page.locator(self._about_link_selector)
 
     def contacts_link_locator(self):
-        return self.element(self._contacts_link_selector)
+        return self.page.locator(self._contacts_link_selector)
 
     def payment_link_locator(self):
-        return self.element(self._payment_link_selector)
+        return self.page.locator(self._payment_link_selector)
 
     def deliver_link_locator(self):
-        return self.element(self._deliver_link_selector)
+        return self.page.locator(self._deliver_link_selector)
 
     def login_button_locator(self):
-        return self.element(self._login_button_selector)
+        return self.page.locator(self._login_button_selector)
 
     def logo_locator(self):
-        return self.element(self._logo_selector)
+        return self.page.locator(self._logo_selector)
 
     def phone_number_locator(self):
-        return self.element(self._phone_number_selector)
+        return self.page.locator(self._phone_number_selector)
 
     def telegram_locator(self):
-        return self.element(self._telegram_selector)
+        return self.page.locator(self._telegram_selector)
 
     def max_locator(self):
-        return self.element(self._max_selector)
+        return self.page.locator(self._max_selector)
 
     def whatsapp_locator(self):
-        return self.element(self._whatsapp_selector)
+        return self.page.locator(self._whatsapp_selector)
 
     # методы
     def click_about(self):
